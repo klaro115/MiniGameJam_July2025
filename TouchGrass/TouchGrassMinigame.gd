@@ -58,7 +58,7 @@ func find_sub_scene_root() -> Node:
 	if node == null:
 		return null
 	
-	while node is not SubViewportContainer:
+	while node is not SubViewport:
 		node = node.get_parent()
 	return node
 

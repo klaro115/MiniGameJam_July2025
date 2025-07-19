@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu6tyyaamv4j7"]
+[gd_scene load_steps=5 format=3 uid="uid://bu6tyyaamv4j7"]
 
 [ext_resource type="Script" uid="uid://doy1xkeiob2n0" path="res://GameManager.gd" id="1_q2tj8"]
 [ext_resource type="Script" uid="uid://d1pt41slojj2k" path="res://TouchGrass/TouchGrassMinigame.gd" id="2_jtero"]
+[ext_resource type="PackedScene" uid="uid://cwrowj6bu741n" path="res://hand.glb" id="3_i2d3t"]
+[ext_resource type="PackedScene" uid="uid://c5m157rbeende" path="res://grass.glb" id="4_xsb47"]
 
 [node name="TouchGrassScene" type="Node3D"]
 script = ExtResource("1_q2tj8")
@@ -9,15 +11,19 @@ script = ExtResource("1_q2tj8")
 [node name="TouchGrass" type="Node3D" parent="." node_paths=PackedStringArray("hand", "pot", "worm", "label_worms")]
 script = ExtResource("2_jtero")
 hand = NodePath("Hand")
-pot = NodePath("Pot")
+pot = NodePath("grass")
 worm = NodePath("Worms")
 label_worms = NodePath("Label_AvoidWorm")
 
-[node name="Pot" type="CSGCylinder3D" parent="TouchGrass"]
-transform = Transform3D(3.50083, 0, 0, 0, 0.664136, 0, 0, 0, 3.50083, 0.000691831, -1.31989, 0.00201988)
-
-[node name="Hand" type="CSGBox3D" parent="TouchGrass"]
+[node name="Hand" type="Node3D" parent="TouchGrass"]
 transform = Transform3D(1.54444, 0, 0, 0, 0.29906, 0, 0, 0, 1, 0, 1.76875, 0)
+
+[node name="HandBox" type="CSGBox3D" parent="TouchGrass/Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="handModel" parent="TouchGrass/Hand" instance=ExtResource("3_i2d3t")]
+transform = Transform3D(-0.11307, 0.035961, -0.371105, -1.75907, 0.748711, 0.608514, 0.219369, 0.555492, -0.0493295, 0.0636273, -0.909989, -0.905793)
 
 [node name="Worms" type="CSGBox3D" parent="TouchGrass"]
 transform = Transform3D(1, 0, 0, 0, 0.518445, 0, 0, 0, 0.340257, 0, -0.496649, 0)
@@ -29,6 +35,9 @@ text = "Touch the Grass!"
 [node name="Label_AvoidWorm" type="Label3D" parent="TouchGrass"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40366, 0.741029, 0.708129)
 text = "Don't touch the Worms!"
+
+[node name="grass" parent="TouchGrass" instance=ExtResource("4_xsb47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.991395, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.20034)
