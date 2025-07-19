@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba1rlky6nprtp"]
+[gd_scene load_steps=3 format=3 uid="uid://ba1rlky6nprtp"]
 
 [ext_resource type="Script" uid="uid://sbqvy6uhgfsj" path="res://SendEmailMiniGame/BouncingButtonUI.gd" id="1_qjuma"]
+[ext_resource type="Texture2D" uid="uid://c0x6dmnp2e4o4" path="res://SendEmailMiniGame/Email background 1.png" id="2_awr5a"]
 
 [node name="BoucingButtonUI" type="Control"]
 layout_mode = 3
@@ -10,6 +11,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qjuma")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_awr5a")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
