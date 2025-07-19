@@ -6,16 +6,31 @@
 [node name="TouchGrassScene" type="Node3D"]
 script = ExtResource("1_q2tj8")
 
-[node name="TouchGrass" type="Node3D" parent="." node_paths=PackedStringArray("hand", "pot")]
+[node name="TouchGrass" type="Node3D" parent="." node_paths=PackedStringArray("hand", "pot", "worm", "label_worms")]
 script = ExtResource("2_jtero")
 hand = NodePath("Hand")
 pot = NodePath("Pot")
+worm = NodePath("Worms")
+label_worms = NodePath("Label_AvoidWorm")
+hand_size = Vector2(1.54, 0.29)
+worm_size = Vector2(0.51, 0.34)
 
 [node name="Pot" type="CSGCylinder3D" parent="TouchGrass"]
 transform = Transform3D(3.50083, 0, 0, 0, 0.664136, 0, 0, 0, 3.50083, 0.000691831, -1.31989, 0.00201988)
 
 [node name="Hand" type="CSGBox3D" parent="TouchGrass"]
 transform = Transform3D(1.54444, 0, 0, 0, 0.29906, 0, 0, 0, 1, 0, 1.76875, 0)
+
+[node name="Worms" type="CSGBox3D" parent="TouchGrass"]
+transform = Transform3D(1, 0, 0, 0, 0.518445, 0, 0, 0, 0.340257, 0, -0.496649, 0)
+
+[node name="Label_TouchGrass" type="Label3D" parent="TouchGrass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82903, 1.23834, 0.708129)
+text = "Touch the Grass!"
+
+[node name="Label_AvoidWorm" type="Label3D" parent="TouchGrass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40366, 0.741029, 0.708129)
+text = "Don't touch the Worms!"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.20034)
