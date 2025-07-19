@@ -44,9 +44,23 @@ func update_game_over() -> bool:
 	var current_timestamp = Time.get_unix_time_from_system()
 	if current_timestamp >= exit_timestamp:
 		# Destroy the minigame node:
-		get_parent_node_3d().queue_free()
+		var minigame_root = find_sub_scene_root()
+		if minigame_root != null:
+			minigame_root.queue_free()
 	
 	return true
+
+func find_sub_scene_root() -> Node:
+	var node = self
+	while node != null and node.name != "TouchGrassScene":
+		node = node.get_parent()
+	
+	if node == null:
+		return null
+	
+	while node is not SubViewportContainer:
+		node = node.get_parent()
+	return node
 
 func move_hand(delta: float) -> void:
 	var input = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
@@ -94,10 +108,16 @@ func set_game_state(new_state: GAME_STATE) -> void:
 	
 	game_state = new_state
 	
+	#var room_scene = get_tree().current_scene
+	#var room_scene_script = room_scene.get_script()
+	#var game_manager = room_scene_script as GameManager
+	
 	if game_state != GAME_STATE.playing:
 		game_ended_timestamp = Time.get_unix_time_from_system()
 	
 	if game_state == GAME_STATE.success:
 		label_worms.text = "You touched grass!"
+		#game_manager.decrease_stress(0.2)
 	elif game_state == GAME_STATE.failure:
 		label_worms.text = "Gross! You touched a worm!"
+		#game_manager.increase_stress(0.2)
