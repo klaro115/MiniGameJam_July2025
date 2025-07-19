@@ -12,9 +12,9 @@ enum GAME_STATE { playing, success, failure }
 @export var end_height : float = -0.8
 @export var hand_max_x : float = 2
 @export var hand_move_speed : float = 1.5
-@export var hand_size = Vector2(0.4, 0.2)
+@export var hand_size = Vector2(1.54, 0.29)
 @export var worm_max_x : float = 2
-@export var worm_size = Vector2(0.4, 0.2)
+@export var worm_size = Vector2(1.0, 0.51)
 
 var game_state = GAME_STATE.playing 
 
@@ -24,7 +24,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	move_hand(delta)
-	if not check_worm_contact():
+	var is_failure = check_worm_contact()
+	if not is_failure:
 		check_success()
 	
 	#TODO: Reposition worms after a while?
@@ -43,19 +44,26 @@ func move_hand(delta: float) -> void:
 	var pos_y = min(hand.position.y + move_offset.y, start_height)
 	hand.position.x = pos_x
 	hand.position.y = pos_y
-	
+
 func check_worm_contact() -> bool:
-	var hand_pos = Vector2(hand.position.x, hand.position.y)
-	var worm_pos = Vector2(worm.position.x, worm.position.y)
-	var hand_rect = Rect2(hand_pos - hand_size * 0.5, hand_size)
-	var worm_rect = Rect2(worm_pos - worm_size * 0.5, worm_size)
+	var hx0 = hand.position.x - hand_size.x * 0.5
+	var hy0 = hand.position.y - hand_size.y * 0.5
+	var hx1 = hx0 + hand_size.x
+	var hy1 = hy0 + hand_size.y
 	
-	if hand_rect.intersects(worm_rect):
-		set_game_state(GAME_STATE.failure)
-		return true
-	else:
+	var wx0 = worm.position.x - worm_size.x * 0.5
+	var wy0 = worm.position.y - worm_size.y * 0.5
+	var wx1 = wx0 + worm_size.x
+	var wy1 = wy0 + worm_size.y
+	
+	var no_overlap = hx1 < wx0 or hx0 > wx1 or hy1 < wy0 or hy0 > wy1
+	
+	if no_overlap:
 		set_game_state(GAME_STATE.playing)
 		return false
+	else:
+		set_game_state(GAME_STATE.failure)
+		return true
 
 func check_success() -> bool:
 	if hand.position.y > end_height:

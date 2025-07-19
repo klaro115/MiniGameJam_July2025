@@ -12,8 +12,6 @@ hand = NodePath("Hand")
 pot = NodePath("Pot")
 worm = NodePath("Worms")
 label_worms = NodePath("Label_AvoidWorm")
-hand_size = Vector2(1.54, 0.29)
-worm_size = Vector2(0.51, 0.34)
 
 [node name="Pot" type="CSGCylinder3D" parent="TouchGrass"]
 transform = Transform3D(3.50083, 0, 0, 0, 0.664136, 0, 0, 0, 3.50083, 0.000691831, -1.31989, 0.00201988)
