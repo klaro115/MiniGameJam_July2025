@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu6tyyaamv4j7"]
+
+[ext_resource type="Script" uid="uid://doy1xkeiob2n0" path="res://GameManager.gd" id="1_q2tj8"]
+[ext_resource type="Script" uid="uid://d1pt41slojj2k" path="res://TouchGrass/TouchGrassMinigame.gd" id="2_jtero"]
+
+[node name="TouchGrassScene" type="Node3D"]
+script = ExtResource("1_q2tj8")
+
+[node name="TouchGrass" type="Node3D" parent="." node_paths=PackedStringArray("hand", "pot")]
+script = ExtResource("2_jtero")
+hand = NodePath("Hand")
+pot = NodePath("Pot")
+
+[node name="Pot" type="CSGCylinder3D" parent="TouchGrass"]
+transform = Transform3D(3.50083, 0, 0, 0, 0.664136, 0, 0, 0, 3.50083, 0.000691831, -1.31989, 0.00201988)
+
+[node name="Hand" type="CSGBox3D" parent="TouchGrass"]
+transform = Transform3D(1.54444, 0, 0, 0, 0.29906, 0, 0, 0, 1, 0, 1.76875, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.20034)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.902059, -0.310634, 0.299661, 0, 0.694282, 0.719703, -0.431613, -0.649215, 0.626283, 2.84458, 2.69233, 1.76617)
