@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4t20n87bu0kq"]
+[gd_scene load_steps=16 format=3 uid="uid://c4t20n87bu0kq"]
 
 [ext_resource type="Script" uid="uid://dcucu7fiec5yn" path="res://Scripts/object.gd" id="1_8ye1f"]
 [ext_resource type="Script" uid="uid://buu1w4f23lbhj" path="res://Scripts/telephone.gd" id="2_brty6"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dvx3nwqodku8m" path="res://computer.glb" id="7_rlay5"]
 [ext_resource type="PackedScene" uid="uid://km3fruu0wn1b" path="res://chair.glb" id="8_skcam"]
 [ext_resource type="PackedScene" uid="uid://1d7rinl24usx" path="res://duck.glb" id="9_x6bi2"]
+[ext_resource type="PackedScene" uid="uid://8sttfn2g4xna" path="res://pillows.glb" id="10_rlay5"]
+[ext_resource type="PackedScene" uid="uid://cqhtc5u2wsq3p" path="res://bowl.glb" id="11_skcam"]
+[ext_resource type="PackedScene" uid="uid://bkjaibrq1o6qc" path="res://oranges.glb" id="12_nqcf4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8kvx8"]
 
@@ -20,12 +23,11 @@ data = PackedVector3Array(0.125, -0.433013, 0.216506, 0.216506, -0.433013, 0.125
 [node name="Room" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.578683, 0.815552, 0, -0.815552, 0.578683, -0.571614, 8.54345, 5.4967)
-projection = 1
+transform = Transform3D(1, 0, 0, 0, 0.578683, 0.815552, 0, -0.815552, 0.578683, -0.571614, 4.24816, 1.96781)
 size = 3.858
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.540696, 0.841218, 0, -0.841218, 0.540696, 0, 0, 0)
+transform = Transform3D(0.98926, -0.12296, 0.0790332, -2.75568e-09, 0.540696, 0.841218, -0.146169, -0.832183, 0.534889, 0, 0, 0)
 shadow_enabled = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -71,6 +73,12 @@ type = "Grass"
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2.2311, 0.0651954, -0.449382)
 shape = SubResource("ConcavePolygonShape3D_brty6")
 
+[node name="pillows" parent="Node3D/couch" instance=ExtResource("10_rlay5")]
+transform = Transform3D(0.252662, -0.263667, -0.163224, 0.288806, 0.276751, 0, 0.112931, -0.11785, 0.365182, 23.7798, 1.92921, -1.30276)
+
+[node name="pillows2" parent="Node3D/couch" instance=ExtResource("10_rlay5")]
+transform = Transform3D(0.276419, -0.288459, 0.0195887, 0.288806, 0.276751, -1.28826e-08, -0.013553, 0.0141433, 0.39952, 24.3813, 2.06885, -4.90242)
+
 [node name="computer" parent="Node3D" instance=ExtResource("7_rlay5")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D/computer"]
@@ -85,4 +93,52 @@ shape = SubResource("SphereShape3D_x6bi2")
 [node name="chair" parent="Node3D" instance=ExtResource("8_skcam")]
 
 [node name="duck" parent="Node3D" instance=ExtResource("9_x6bi2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09703, 0)
+transform = Transform3D(0.742773, 0, -2.90659, 0, 3, 0, 2.90659, 0, 0.742773, 1.86826, 6.10348, 2.151)
+
+[node name="bowl" parent="Node3D" instance=ExtResource("11_skcam")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -24.6894, 2.28725, 13.5332)
+
+[node name="oranges" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.337965, 0)
+
+[node name="oranges2" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148449, -0.337965, 0)
+
+[node name="oranges3" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 0.997343, -0.0728552, 0, 0.0728552, 0.997343, -0.0874834, -0.337965, -0.148144)
+
+[node name="oranges4" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.337965, 0.0949492)
+
+[node name="oranges5" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0832367, -0.318077, -0.0594673)
+
+[node name="oranges6" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131339, -0.337965, 0.116744)
+
+[node name="oranges7" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110168, -0.320009, 0.0309815)
+
+[node name="oranges8" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.201627, 0)
+
+[node name="oranges9" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.146179, -0.337965, -0.120224)
+
+[node name="oranges10" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132619, -0.225885, 0.0450573)
+
+[node name="oranges11" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.248921, -0.123849)
+
+[node name="oranges12" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0918932, -0.242225, -0.164732)
+
+[node name="oranges13" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.196563, -0.254975, -0.0660691)
+
+[node name="oranges14" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104061, -0.206611, -0.0772672)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.643817, 3.18979, -0.0975037)
