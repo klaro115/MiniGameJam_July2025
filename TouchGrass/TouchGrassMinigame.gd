@@ -16,24 +16,37 @@ enum GAME_STATE { playing, success, failure }
 @export var worm_max_x : float = 2
 @export var worm_size = Vector2(1.0, 0.51)
 
-var game_state = GAME_STATE.playing 
+var game_state = GAME_STATE.playing
+var game_ended_timestamp = 0.0
+const game_ended_wait_duration = 3.0
 
 func _ready() -> void:
 	hand.position.x = (randf() * 2 - 1) * hand_max_x
 	worm.position = generate_worm_position()
 
 func _process(delta: float) -> void:
+	if update_game_over():
+		return
+	
 	move_hand(delta)
 	var is_failure = check_worm_contact()
 	if not is_failure:
 		check_success()
 	
 	#TODO: Reposition worms after a while?
+
+func update_game_over() -> bool:
+	if game_state == GAME_STATE.playing:
+		return false
 	
-	# Destroy the minigame node:
-	#if game_state != GAME_STATE.playing:
-		#TODO: Delay this:
-	#	queue_free()
+	# Exit minigame a few seconds after success/failure:
+	var exit_timestamp = game_ended_timestamp + game_ended_wait_duration
+	var current_timestamp = Time.get_unix_time_from_system()
+	if current_timestamp >= exit_timestamp:
+		# Destroy the minigame node:
+		get_parent_node_3d().queue_free()
+	
+	return true
 
 func move_hand(delta: float) -> void:
 	var input = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
@@ -59,7 +72,6 @@ func check_worm_contact() -> bool:
 	var no_overlap = hx1 < wx0 or hx0 > wx1 or hy1 < wy0 or hy0 > wy1
 	
 	if no_overlap:
-		set_game_state(GAME_STATE.playing)
 		return false
 	else:
 		set_game_state(GAME_STATE.failure)
@@ -81,6 +93,9 @@ func set_game_state(new_state: GAME_STATE) -> void:
 		return
 	
 	game_state = new_state
+	
+	if game_state != GAME_STATE.playing:
+		game_ended_timestamp = Time.get_unix_time_from_system()
 	
 	if game_state == GAME_STATE.success:
 		label_worms.text = "You touched grass!"
