@@ -96,7 +96,7 @@ shape = SubResource("SphereShape3D_x6bi2")
 transform = Transform3D(0.742773, 0, -2.90659, 0, 3, 0, 2.90659, 0, 0.742773, 1.86826, 6.10348, 2.151)
 
 [node name="bowl" parent="Node3D" instance=ExtResource("11_skcam")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -24.6894, 2.28725, 13.5332)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -24.6894, 2.28725, 14.9036)
 
 [node name="oranges" parent="Node3D/bowl" instance=ExtResource("12_nqcf4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.337965, 0)
