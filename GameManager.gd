@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name GameManager
+
 var _stress_level = 0.0;
 
 func increase_stress(amount : float):
