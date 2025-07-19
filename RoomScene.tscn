@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4t20n87bu0kq"]
+[gd_scene load_steps=13 format=3 uid="uid://c4t20n87bu0kq"]
 
 [ext_resource type="Script" uid="uid://dcucu7fiec5yn" path="res://Scripts/object.gd" id="1_8ye1f"]
 [ext_resource type="Script" uid="uid://buu1w4f23lbhj" path="res://Scripts/telephone.gd" id="2_brty6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b764y8rgm2a4r" path="res://couch.glb" id="6_q2jux"]
 [ext_resource type="PackedScene" uid="uid://dvx3nwqodku8m" path="res://computer.glb" id="7_rlay5"]
 [ext_resource type="PackedScene" uid="uid://km3fruu0wn1b" path="res://chair.glb" id="8_skcam"]
+[ext_resource type="PackedScene" uid="uid://1d7rinl24usx" path="res://duck.glb" id="9_x6bi2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8kvx8"]
 
@@ -82,3 +83,6 @@ transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, -1.95819, 0.46344, -17.080
 shape = SubResource("SphereShape3D_x6bi2")
 
 [node name="chair" parent="Node3D" instance=ExtResource("8_skcam")]
+
+[node name="duck" parent="Node3D" instance=ExtResource("9_x6bi2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09703, 0)
